@@ -89,14 +89,52 @@ class PlayerTable extends React.Component {
   }
 
   filterTable(pos) {
-    //take text of button and filters
-    console.log(`filter func: ${pos}`);
-    console.log(this.state.positions);
-    // if(this.state.positions.pos === true){
-    //   this.setState({positions.pos: false})
-    // }else{
-    //   this.setState({positions.pos: true});
-    // }
+    console.log(this.state.positions.QB);
+    switch (pos) {
+      case 'QB':
+        (this.state.positions.QB === true) ? this.setState({ positions: { ...this.state.positions, QB: false } }) : this.setState({ positions: { ...this.state.positions, QB: true } });
+        break;
+    }
+    switch (pos) {
+      case 'RB':
+        (this.state.positions.RB === true) ? this.setState({ positions: { ...this.state.positions, RB: false } }) : this.setState({ positions: { ...this.state.positions, RB: true } });
+        break;
+    }
+    switch (pos) {
+      case 'WR':
+        (this.state.positions.WR === true) ? this.setState({ positions: { ...this.state.positions, WR: false } }) : this.setState({ positions: { ...this.state.positions, WR: true } });
+        break;
+    }
+    switch (pos) {
+      case 'TE':
+        (this.state.positions.TE === true) ? this.setState({ positions: { ...this.state.positions, TE: false } }) : this.setState({ positions: { ...this.state.positions, TE: true } });
+        break;
+    }
+    switch (pos) {
+      case 'K':
+        (this.state.positions.K === true) ? this.setState({ positions: { ...this.state.positions, K: false } }) : this.setState({ positions: { ...this.state.positions, K: true } });
+        break;
+    }
+    switch (pos) {
+      case 'DEF':
+        (this.state.positions.DEF === true) ? this.setState({ positions: { ...this.state.positions, DEF: false } }) : this.setState({ positions: { ...this.state.positions, DEF: true } });
+        break;
+    }
+    switch (pos) {
+      case 'LB':
+        (this.state.positions.LB === true) ? this.setState({ positions: { ...this.state.positions, LB: false } }) : this.setState({ positions: { ...this.state.positions, LB: true } });
+        break;
+    }
+    switch (pos) {
+      case 'DB':
+        (this.state.positions.DB === true) ? this.setState({ positions: { ...this.state.positions, DB: false } }) : this.setState({ positions: { ...this.state.positions, DB: true } });
+        break;
+    }
+    switch (pos) {
+      case 'DL':
+        (this.state.positions.DL === true) ? this.setState({ positions: { ...this.state.positions, DL: false } }) : this.setState({ positions: { ...this.state.positions, DL: true } });
+        break;
+    }
   }
 
   render() {
