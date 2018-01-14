@@ -1,2 +1,2 @@
-# FFProject
-Fantasy Football Project
+# NFLStats
+NFL Stats from nfl.com API
