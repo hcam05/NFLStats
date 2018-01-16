@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import PlayerStats from './PlayerStats';
-import PlayerControl from './PlayerControl';
+import PlayerControl from '../Controls/PlayerControl';
+import YrWkControl from '../Controls/YrWkControl';
+// import playerData from '../../model/playerData'
 
 class PlayerTable extends React.Component {
   constructor() {
@@ -11,7 +13,7 @@ class PlayerTable extends React.Component {
       start: 0,
       end: 49,
       year: 2017,
-      week: 16,
+      week: 1,
       positions: {
         QB: true,
         RB: true,
@@ -27,7 +29,7 @@ class PlayerTable extends React.Component {
     };
   };
 
-  componentDidMount() {
+  fetchNflData() {
     const allPlayers = []
     const nflApiUrlSeason = `http://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=${this.state.year}&week=${this.state.week}&format=json`;
     console.log(`getting data ${nflApiUrlSeason}`);
@@ -54,6 +56,37 @@ class PlayerTable extends React.Component {
       })
   }
 
+  componentDidMount() {
+    const allPlayers = []
+    const nflApiUrlSeason = `http://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=${this.state.year}&week=${this.state.week}&format=json`;
+    console.log(`getting data ${nflApiUrlSeason}`);
+    fetch(nflApiUrlSeason)
+      .then((resp) => resp.json())
+      .then((data) => {
+        data.players.forEach((x) => {
+          const plyr = {};
+          plyr.id = x.id;
+          plyr.name = x.name;
+          plyr.position = x.position;
+          plyr.team = x.teamAbbr;
+          plyr.seasonPts = x.seasonPts;
+          plyr.weekPts = x.weekPts;
+          plyr.season = this.state.season;
+          plyr.week = this.state.week;
+          plyr.yrWkId = this.state.season + '' + this.state.week + '' + x.id;
+          allPlayers.push(plyr);
+        })
+        console.log(`in setstate`);
+        this.setState({
+          players: allPlayers
+        });
+      })
+    }
+    
+    // componentWillUpdate(nextProps, nextState){
+    //  
+    // }
+    
   nextPg() {
     if (this.state.end < this.state.players.length - 1) {
       this.setState({
@@ -89,7 +122,6 @@ class PlayerTable extends React.Component {
   }
 
   filterTable(pos) {
-    console.log(this.state.positions.QB);
     switch (pos) {
       case 'QB':
         (this.state.positions.QB === true) ? this.setState({ positions: { ...this.state.positions, QB: false } }) : this.setState({ positions: { ...this.state.positions, QB: true } });
@@ -137,6 +169,18 @@ class PlayerTable extends React.Component {
     }
   }
 
+  setYear(year) {
+    console.log('setting year');
+    console.log(year.target.value);
+    this.setState({ year: year.target.value });
+  }
+
+  setWeek(week) {
+    console.log('setting week');
+    console.log(week.target.value);
+    this.setState({ week: week.target.value });
+  }
+
   render() {
 
     if (this.state.players.length < 1) return <div>Loading</div>;
@@ -146,6 +190,9 @@ class PlayerTable extends React.Component {
         <div>Fantasy Football Dashboard</div>
         <div>
           <button onClick={() => this.showAll()}>Show All</button>
+        </div>
+        <div>
+          <YrWkControl setYear={(year) => this.setYear(year)} setWeek={(week) => this.setWeek(week)} season={this.state.season} />
         </div>
         <div>
           <PlayerControl filterTable={(pos) => this.filterTable(pos)} />
