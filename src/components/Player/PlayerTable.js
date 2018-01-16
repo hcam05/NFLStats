@@ -32,7 +32,7 @@ class PlayerTable extends React.Component {
   fetchNflData() {
     const allPlayers = []
     const nflApiUrlSeason = `http://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=${this.state.year}&week=${this.state.week}&format=json`;
-    console.log(`getting data ${nflApiUrlSeason}`);
+    console.log(`fetchNFLData: ${nflApiUrlSeason}`);
     fetch(nflApiUrlSeason)
       .then((resp) => resp.json())
       .then((data) => {
@@ -44,9 +44,9 @@ class PlayerTable extends React.Component {
           plyr.team = x.teamAbbr;
           plyr.seasonPts = x.seasonPts;
           plyr.weekPts = x.weekPts;
-          plyr.season = this.state.season;
+          plyr.season = this.state.year;
           plyr.week = this.state.week;
-          plyr.yrWkId = this.state.season + '' + this.state.week + '' + x.id;
+          plyr.yrWkId = this.state.year + '' + this.state.week + '' + x.id;
           allPlayers.push(plyr);
         })
         console.log(`in setstate`);
@@ -57,36 +57,19 @@ class PlayerTable extends React.Component {
   }
 
   componentDidMount() {
-    const allPlayers = []
-    const nflApiUrlSeason = `http://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=${this.state.year}&week=${this.state.week}&format=json`;
-    console.log(`getting data ${nflApiUrlSeason}`);
-    fetch(nflApiUrlSeason)
-      .then((resp) => resp.json())
-      .then((data) => {
-        data.players.forEach((x) => {
-          const plyr = {};
-          plyr.id = x.id;
-          plyr.name = x.name;
-          plyr.position = x.position;
-          plyr.team = x.teamAbbr;
-          plyr.seasonPts = x.seasonPts;
-          plyr.weekPts = x.weekPts;
-          plyr.season = this.state.season;
-          plyr.week = this.state.week;
-          plyr.yrWkId = this.state.season + '' + this.state.week + '' + x.id;
-          allPlayers.push(plyr);
-        })
-        console.log(`in setstate`);
-        this.setState({
-          players: allPlayers
-        });
-      })
-    }
-    
-    // componentWillUpdate(nextProps, nextState){
-    //  
-    // }
-    
+   this.fetchNflData()
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (nextProps.week !== this.state.week || nextProps.year !== this.state.year);
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    console.log('comp did update');
+    console.log(prevProps);
+    console.log(prevState);
+  }
+
   nextPg() {
     if (this.state.end < this.state.players.length - 1) {
       this.setState({
@@ -173,12 +156,14 @@ class PlayerTable extends React.Component {
     console.log('setting year');
     console.log(year.target.value);
     this.setState({ year: year.target.value });
+    this.fetchNflData();
   }
 
   setWeek(week) {
     console.log('setting week');
     console.log(week.target.value);
     this.setState({ week: week.target.value });
+    this.fetchNflData();
   }
 
   render() {
