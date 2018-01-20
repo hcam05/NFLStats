@@ -37,34 +37,35 @@ class PlayerTable extends React.Component {
       .then((resp) => resp.json())
       .then((data) => {
         data.players.forEach((x) => {
-          const plyr = {};
-          plyr.id = x.id;
-          plyr.name = x.name;
-          plyr.position = x.position;
-          plyr.team = x.teamAbbr;
-          plyr.seasonPts = x.seasonPts;
-          plyr.weekPts = x.weekPts;
-          plyr.season = this.state.year;
-          plyr.week = this.state.week;
-          plyr.yrWkId = this.state.year + '' + this.state.week + '' + x.id;
-          allPlayers.push(plyr);
+          if (x.position !== 'DB' && x.position !== 'DL' && x.position !== 'LB') {
+            const plyr = {};
+            plyr.id = x.id;
+            plyr.name = x.name;
+            plyr.position = x.position;
+            plyr.team = x.teamAbbr;
+            plyr.seasonPts = x.seasonPts;
+            plyr.weekPts = x.weekPts;
+            plyr.season = this.state.year;
+            plyr.week = this.state.week;
+            plyr.yrWkId = this.state.year + '' + this.state.week + '' + x.id;
+            allPlayers.push(plyr);
+          }
         })
-        console.log(`in setstate`);
-        this.setState({
+          this.setState({
           players: allPlayers
         });
       })
   }
 
   componentDidMount() {
-   this.fetchNflData()
+    this.fetchNflData()
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return (nextProps.week !== this.state.week || nextProps.year !== this.state.year);
   }
 
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps, prevState) {
     console.log('comp did update');
     console.log(prevProps);
     console.log(prevState);
