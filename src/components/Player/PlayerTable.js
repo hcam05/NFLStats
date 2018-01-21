@@ -51,7 +51,7 @@ class PlayerTable extends React.Component {
             allPlayers.push(plyr);
           }
         })
-          this.setState({
+        this.setState({
           players: allPlayers
         });
       })
@@ -184,7 +184,7 @@ class PlayerTable extends React.Component {
           <PlayerControl filterTable={(pos) => this.filterTable(pos)} />
         </div>
         <br />
-        <PlayerStats data={this.state.players} start={this.state.start} end={this.state.end} />
+        <PlayerStats positions={this.state.positions} data={this.state.players} start={this.state.start} end={this.state.end} />
         <br />
         <button onClick={() => this.prevPg()}>Prev</button>
         <button onClick={() => this.nextPg()}>Next</button>
