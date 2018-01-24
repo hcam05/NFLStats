@@ -21,9 +21,9 @@ class PlayerTable extends React.Component {
         TE: true,
         K: true,
         DEF: true,
-        LB: true,
-        DB: true,
-        DL: true,
+        LB: false,
+        DB: false,
+        DL: false,
       },
       showAll: false,
     };
@@ -166,6 +166,20 @@ class PlayerTable extends React.Component {
     this.setState({ week: week.target.value });
     this.fetchNflData();
   }
+
+  filteredPositions() {
+    // let positionArr = Object.keys(this.state.positions);
+    // let filtered = Object.values(this.state.positions);
+    // const filteredPositions = positionArr.filter(function (x, i) {
+    //   if (filtered[i]) {
+    //     return positionArr[i]
+    //   }
+    // })
+    // console.log(`it fired: ${filteredPositions}`);
+    // filteredPlayers = this.state.players.filter((x,i) => filteredPositions(x.position !== filteredPositons[i]));
+    // return filteredPlayers
+    // console.log(filteredPlayers);
+  };
 
   render() {
 
