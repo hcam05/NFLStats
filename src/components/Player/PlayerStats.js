@@ -11,14 +11,25 @@ class PlayerStats extends React.Component {
       }
     })
     console.log(`it fired: ${filteredPositions}`);
+    this.filteredPlayers(filteredPositions);
   };
-
+  
+  filteredPlayers(filteredPositions){
+    const filteredPlayers = this.props.data.filter( function(x,i, filteredPositions) {
+      console.log(x.position);
+      //how to filter all positions in an array
+      (x.position !== filteredPositions[i])
+    });
+    console.log(filteredPlayers);
+    return filteredPlayers
+  }
+  
   componentDidMount() {
-    this.filteredPositions(this.props.positons);
+    // this.filteredPositions(this.props.positons);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return (nextProps.positions !== this.props.positions);
+    return (nextProps.positions !== this.props.positions || nextProps.data != this.props.data);
   }
 
   componentDidUpdate() {
