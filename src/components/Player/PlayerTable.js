@@ -25,7 +25,8 @@ class PlayerTable extends React.Component {
         DB: false,
         DL: false,
       },
-      showAll: false,
+      showPosition: 'all',
+      showAllPlayers: false,
     };
   };
 
@@ -62,13 +63,14 @@ class PlayerTable extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return (nextProps.week !== this.state.week || nextProps.year !== this.state.year);
+    // console.log(nextProps);
+    return (nextProps.week !== this.state.week || nextProps.year !== this.state.year || nextProps.end !== this.state.end);
   }
 
   componentDidUpdate(prevProps, prevState) {
     console.log('comp did update');
-    console.log(prevProps);
-    console.log(prevState);
+    // console.log(prevProps);
+    // console.log(prevState);
   }
 
   nextPg() {
@@ -89,18 +91,18 @@ class PlayerTable extends React.Component {
     }
   };
 
-  showAll() {
-    if (this.state.showAll === false) {
+  showAllPlayers() {
+    if (this.state.showAllPlayers === false) {
       this.setState({
         start: 0,
         end: this.state.players.length - 1,
-        showAll: true,
+        showAllPlayers: true,
       })
     } else {
       this.setState({
         start: 0,
         end: 49,
-        showAll: false,
+        showAllPlayers: false,
       })
     }
   }
@@ -109,46 +111,55 @@ class PlayerTable extends React.Component {
     switch (pos) {
       case 'QB':
         (this.state.positions.QB === true) ? this.setState({ positions: { ...this.state.positions, QB: false } }) : this.setState({ positions: { ...this.state.positions, QB: true } });
+        (this.state.showPosition !== 'QB') ? this.setState({ showPosition: 'QB', showAllPlayers: true, end: this.state.players.length - 1}) : this.setState(() => null);
         break;
     }
     switch (pos) {
       case 'RB':
         (this.state.positions.RB === true) ? this.setState({ positions: { ...this.state.positions, RB: false } }) : this.setState({ positions: { ...this.state.positions, RB: true } });
+        (this.state.showPosition !== 'RB') ? this.setState({ showPosition: 'RB', showAllPlayers: true, end: this.state.players.length - 1, }) : this.setState(() => null);
         break;
     }
     switch (pos) {
       case 'WR':
         (this.state.positions.WR === true) ? this.setState({ positions: { ...this.state.positions, WR: false } }) : this.setState({ positions: { ...this.state.positions, WR: true } });
+        (this.state.showPosition !== 'WR') ? this.setState({ showPosition: 'WR', showAllPlayers: true, end: this.state.players.length - 1, }) : this.setState(() => null);
         break;
     }
     switch (pos) {
       case 'TE':
         (this.state.positions.TE === true) ? this.setState({ positions: { ...this.state.positions, TE: false } }) : this.setState({ positions: { ...this.state.positions, TE: true } });
+        (this.state.showPosition !== 'TE') ? this.setState({ showPosition: 'TE', showAllPlayers: true, end: this.state.players.length - 1, }) : this.setState(() => null);
         break;
     }
     switch (pos) {
       case 'K':
         (this.state.positions.K === true) ? this.setState({ positions: { ...this.state.positions, K: false } }) : this.setState({ positions: { ...this.state.positions, K: true } });
+        (this.state.showPosition !== 'K') ? this.setState({ showPosition: 'K', showAllPlayers: true, end: this.state.players.length - 1, }) : this.setState(() => null);
         break;
     }
     switch (pos) {
       case 'DEF':
         (this.state.positions.DEF === true) ? this.setState({ positions: { ...this.state.positions, DEF: false } }) : this.setState({ positions: { ...this.state.positions, DEF: true } });
+        (this.state.showPosition !== 'DEF') ? this.setState({ showPosition: 'DEF', showAllPlayers: true, end: this.state.players.length - 1, }) : this.setState(() => null);
         break;
     }
     switch (pos) {
       case 'LB':
         (this.state.positions.LB === true) ? this.setState({ positions: { ...this.state.positions, LB: false } }) : this.setState({ positions: { ...this.state.positions, LB: true } });
+        (this.state.showPosition !== 'LB') ? this.setState({ showPosition: 'LB', showAllPlayers: true, end: this.state.players.length - 1, }) : this.setState(() => null);
         break;
     }
     switch (pos) {
       case 'DB':
         (this.state.positions.DB === true) ? this.setState({ positions: { ...this.state.positions, DB: false } }) : this.setState({ positions: { ...this.state.positions, DB: true } });
+        (this.state.showPosition !== 'DB') ? this.setState({ showPosition: 'DB', showAllPlayers: true, end: this.state.players.length - 1, }) : this.setState(() => null);
         break;
     }
     switch (pos) {
       case 'DL':
         (this.state.positions.DL === true) ? this.setState({ positions: { ...this.state.positions, DL: false } }) : this.setState({ positions: { ...this.state.positions, DL: true } });
+        (this.state.showPosition !== 'DL') ? this.setState({ showPosition: 'DL', showAllPlayers: true, end: this.state.players.length - 1, }) : this.setState(() => null);
         break;
     }
   }
@@ -189,7 +200,7 @@ class PlayerTable extends React.Component {
       <div>
         <div>Fantasy Football Dashboard</div>
         <div>
-          <button onClick={() => this.showAll()}>Show All</button>
+          <button onClick={() => this.showAllPlayers()}>Show All</button>
         </div>
         <div>
           <YrWkControl setYear={(year) => this.setYear(year)} setWeek={(week) => this.setWeek(week)} season={this.state.season} />
@@ -198,7 +209,7 @@ class PlayerTable extends React.Component {
           <PlayerControl filterTable={(pos) => this.filterTable(pos)} />
         </div>
         <br />
-        <PlayerStats positions={this.state.positions} data={this.state.players} start={this.state.start} end={this.state.end} />
+        <PlayerStats positions={this.state.positions} data={this.state.players} start={this.state.start} end={this.state.end} showPosition={this.state.showPosition} />
         <br />
         <button onClick={() => this.prevPg()}>Prev</button>
         <button onClick={() => this.nextPg()}>Next</button>
