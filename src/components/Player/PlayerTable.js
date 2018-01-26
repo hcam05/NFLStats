@@ -4,6 +4,7 @@ import PlayerStats from './PlayerStats';
 import PlayerControl from '../Controls/PlayerControl';
 import YrWkControl from '../Controls/YrWkControl';
 // import playerData from '../../model/playerData'
+import '../../style/style.css';
 
 class PlayerTable extends React.Component {
   constructor() {
@@ -197,22 +198,24 @@ class PlayerTable extends React.Component {
     if (this.state.players.length < 1) return <div>Loading</div>;
 
     return (
-      <div>
-        <div>Fantasy Football Dashboard</div>
-        <div>
-          <button onClick={() => this.showAllPlayers()}>Show All</button>
-        </div>
-        <div>
+      <div className="app">
+        <div className="app-header">Fantasy Football Dashboard</div>
+        <div className="season-week-filter">
           <YrWkControl setYear={(year) => this.setYear(year)} setWeek={(week) => this.setWeek(week)} season={this.state.season} />
         </div>
         <div>
           <PlayerControl filterTable={(pos) => this.filterTable(pos)} />
         </div>
         <br />
-        <PlayerStats positions={this.state.positions} data={this.state.players} start={this.state.start} end={this.state.end} showPosition={this.state.showPosition} />
+        <div className="app-table">
+          <PlayerStats positions={this.state.positions} data={this.state.players} start={this.state.start} end={this.state.end} showPosition={this.state.showPosition} />
+        </div>
         <br />
-        <button onClick={() => this.prevPg()}>Prev</button>
-        <button onClick={() => this.nextPg()}>Next</button>
+        <div>
+          <button onClick={() => this.prevPg()}>Prev</button>
+          <button onClick={() => this.nextPg()}>Next</button>
+          <button onClick={() => this.showAllPlayers()}>Show All</button>
+        </div>
       </div>
 
     );
