@@ -7,7 +7,7 @@ class PlayerStats extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return (nextProps.positions !== this.props.positions || nextProps.data != this.props.data || nextProps.end !== this.props.end);
+    return (nextProps.positions !== this.props.positions || nextProps.data != this.props.data || nextProps.end !== this.props.end || nextProps.showPosition !== this.props.showPosition);
   }
 
   componentDidUpdate() {
