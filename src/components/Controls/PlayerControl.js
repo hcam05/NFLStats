@@ -3,8 +3,8 @@ import React from 'react';
 const PlayerControl = (props) => {
 
   return (
-    <div>
-      Filter Position
+    <div className="position-filter">
+      Filter Position:&nbsp;
       <button onClick={() => props.filterTable('QB')}>QB</button>
       <button onClick={() => props.filterTable('RB')}>RB</button>
       <button onClick={() => props.filterTable('WR')}>WR</button>
