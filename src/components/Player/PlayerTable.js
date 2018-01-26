@@ -107,7 +107,7 @@ class PlayerTable extends React.Component {
     switch (pos) {
       case 'QB':
         (this.state.positions.QB === true) ? this.setState({ positions: { ...this.state.positions, QB: false } }) : this.setState({ positions: { ...this.state.positions, QB: true } });
-        (this.state.showPosition !== 'QB') ? this.setState({ showPosition: 'QB', showAllPlayers: true, end: this.state.players.length - 1}) : this.setState(() => null);
+        (this.state.showPosition !== 'QB') ? this.setState({ showPosition: 'QB', showAllPlayers: true, end: this.state.players.length - 1 }) : this.setState(() => null);
         break;
     }
     switch (pos) {
@@ -156,6 +156,24 @@ class PlayerTable extends React.Component {
       case 'DL':
         (this.state.positions.DL === true) ? this.setState({ positions: { ...this.state.positions, DL: false } }) : this.setState({ positions: { ...this.state.positions, DL: true } });
         (this.state.showPosition !== 'DL') ? this.setState({ showPosition: 'DL', showAllPlayers: true, end: this.state.players.length - 1, }) : this.setState(() => null);
+        break;
+    }
+    switch (pos) {
+      case 'all':
+        (this.state.showPosition !== 'all') ? this.setState({
+          showPosition: 'all',
+          showAllPlayers: true,
+          end: this.state.players.length - 1,
+          positons: {
+            ...this.state.postions,
+            QB: true,
+            RB: true,
+            WR: true,
+            TE: true,
+            K: true,
+            DEF: true
+          },
+        }) : this.setState(() => null);
         break;
     }
   }
