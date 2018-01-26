@@ -33,7 +33,6 @@ class PlayerTable extends React.Component {
   fetchNflData() {
     const allPlayers = []
     const nflApiUrlSeason = `http://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=${this.state.year}&week=${this.state.week}&format=json`;
-    console.log(`fetchNFLData: ${nflApiUrlSeason}`);
     fetch(nflApiUrlSeason)
       .then((resp) => resp.json())
       .then((data) => {
@@ -63,14 +62,11 @@ class PlayerTable extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    // console.log(nextProps);
     return (nextProps.week !== this.state.week || nextProps.year !== this.state.year || nextProps.end !== this.state.end);
   }
 
   componentDidUpdate(prevProps, prevState) {
     console.log('comp did update');
-    // console.log(prevProps);
-    // console.log(prevState);
   }
 
   nextPg() {
@@ -177,20 +173,6 @@ class PlayerTable extends React.Component {
     this.setState({ week: week.target.value });
     this.fetchNflData();
   }
-
-  filteredPositions() {
-    // let positionArr = Object.keys(this.state.positions);
-    // let filtered = Object.values(this.state.positions);
-    // const filteredPositions = positionArr.filter(function (x, i) {
-    //   if (filtered[i]) {
-    //     return positionArr[i]
-    //   }
-    // })
-    // console.log(`it fired: ${filteredPositions}`);
-    // filteredPlayers = this.state.players.filter((x,i) => filteredPositions(x.position !== filteredPositons[i]));
-    // return filteredPlayers
-    // console.log(filteredPlayers);
-  };
 
   render() {
 
