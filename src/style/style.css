@@ -1,0 +1,50 @@
+:root {
+  font: 400 16px 'Roboto', sans-serif;
+}
+
+body {
+  background: #ABB7B7;
+  margin: 0 auto;
+}
+
+.app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.app-table {
+  display: flex;
+  background: #ecf0f1;
+  border-radius: 4px 4px 0 0;
+}
+
+.app-header {
+  display: flex;
+  font-size: 20px;
+  text-align: center;
+  margin: 5px;
+}
+
+.season-week-filter {
+  display: flex;
+  margin: 5px;
+  text-align: center;
+}
+
+.position-filter {
+  display: flex;
+  margin: 5px;
+  text-align: center;
+}
+
+button {
+  font-size: 14px;
+}
+
+select {
+  font-size: 14px;
+}
