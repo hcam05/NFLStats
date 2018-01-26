@@ -16,7 +16,9 @@ class PlayerStats extends React.Component {
   
   render() {
 
-    const playerStats = this.props.data
+    // SORT PLAYERS BY TOTAL WEEK POINTS //
+    this.props.data.sort((x,y) => y.weekPts - x.weekPts);
+
     const playerList = []
     if (this.props.data.length !== 0 && this.props.showPosition === 'all') {
       for (let i = this.props.start; i <= this.props.end; i++) {
@@ -49,7 +51,7 @@ class PlayerStats extends React.Component {
         }
       }
     }
-
+    
     return (
       <table key='playertable'>
         <thead>
