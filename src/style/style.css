@@ -18,7 +18,7 @@ body {
 
 .app-table {
   display: flex;
-  background: #ecf0f1;
+  background: #EFEFEF;
   border-radius: 4px 4px 0 0;
 }
 
@@ -48,3 +48,35 @@ button {
 select {
   font-size: 14px;
 }
+
+/* Table Styling */
+
+table {  
+  color: #6C7A89;
+  width: 640px; 
+  border-collapse: collapse; 
+  border-spacing: 0; 
+}
+
+td, th {  
+  border: 1px solid transparent;
+  height: 30px; 
+  transition: all 0.3s;  /* Transitiion for hover effect */
+}
+
+th {  
+  background: #DADFE1;  
+  font-weight: bold;
+}
+
+td {  
+  background: #EFEFEF;
+  text-align: center;
+}
+
+/* Table Row Styling */
+tr:nth-child(even) td { background: #F1F1F1; }   
+tr:nth-child(odd) td { background: #FEFEFE; }  
+
+/* Hover Effect */
+tr td:hover { background: #666; color: #FFF; }  
