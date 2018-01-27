@@ -180,17 +180,11 @@ class PlayerTable extends React.Component {
   }
 
   setYear(year) {
-    console.log('setting year');
-    console.log(year.target.value);
-    this.setState({ year: year.target.value });
-    this.fetchNflData();
+    this.setState({ year: year.target.value }, () => this.fetchNflData());
   }
 
   setWeek(week) {
-    console.log('setting week');
-    console.log(week.target.value);
-    this.setState({ week: week.target.value });
-    this.fetchNflData();
+    this.setState({ week: week.target.value }, () => this.fetchNflData());
   }
 
   render() {
