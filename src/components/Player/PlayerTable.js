@@ -28,6 +28,7 @@ class PlayerTable extends React.Component {
       },
       showPosition: 'all',
       showAllPlayers: false,
+      loading: true,
     };
   };
 
@@ -53,9 +54,11 @@ class PlayerTable extends React.Component {
           }
         })
         this.setState({
-          players: allPlayers
+          players: allPlayers,
+          loading: false,
         });
       })
+      .catch((err) => console.log(`Error: ${err}`));
   }
 
   componentDidMount() {
