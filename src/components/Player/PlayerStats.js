@@ -29,8 +29,8 @@ class PlayerStats extends React.Component {
             <td key={`${this.props.data[i].id}team`}>{this.props.data[i].team}</td>
             <td key={`${this.props.data[i].id}seasonPts`}>{this.props.data[i].seasonPts}</td>
             <td key={`${this.props.data[i].id}weekPts`}>{this.props.data[i].weekPts}</td>
-            <td key={`${this.props.data[i].id}week`}>{this.props.data[i].week}</td>
-            <td key={`${this.props.data[i].id}season`}>{this.props.data[i].season}</td>
+            {/* <td key={`${this.props.data[i].id}week`}>{this.props.data[i].week}</td>
+            <td key={`${this.props.data[i].id}season`}>{this.props.data[i].season}</td> */}
           </tr>
         )
       }
@@ -44,8 +44,8 @@ class PlayerStats extends React.Component {
               <td key={`${this.props.data[i].id}team`}>{this.props.data[i].team}</td>
               <td key={`${this.props.data[i].id}seasonPts`}>{this.props.data[i].seasonPts}</td>
               <td key={`${this.props.data[i].id}weekPts`}>{this.props.data[i].weekPts}</td>
-              <td key={`${this.props.data[i].id}week`}>{this.props.data[i].week}</td>
-              <td key={`${this.props.data[i].id}season`}>{this.props.data[i].season}</td>
+              {/* <td key={`${this.props.data[i].id}week`}>{this.props.data[i].week}</td>
+              <td key={`${this.props.data[i].id}season`}>{this.props.data[i].season}</td> */}
             </tr>
           )
         }
@@ -61,8 +61,8 @@ class PlayerStats extends React.Component {
             <th key='team'>Team</th>
             <th key='season-points'>Season Points</th>
             <th key='week-points'>Week Points</th>
-            <th key='week'>Week</th>
-            <th key='year'>Year</th>
+            {/* <th key='week'>Week</th>
+            <th key='year'>Year</th> */}
           </tr>
         </thead>
         <tbody>
