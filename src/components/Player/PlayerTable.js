@@ -208,7 +208,7 @@ class PlayerTable extends React.Component {
           <PlayerStats positions={this.state.positions} data={this.state.players} start={this.state.start} end={this.state.end} showPosition={this.state.showPosition} />
         </div>
         <br />
-        <div>
+        <div className="app-pagination">
           <button onClick={() => this.prevPg()}>Prev</button>
           <button onClick={() => this.nextPg()}>Next</button>
           <button onClick={() => this.showAllPlayers()}>Show All</button>
