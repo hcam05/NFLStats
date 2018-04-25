@@ -1,8 +1,13 @@
 const path = require('path');
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
 module.exports = {
   context: path.join(__dirname, 'src'),
   entry: [
+    hotMiddlewareScript,
     'babel-polyfill',
     './app.js',
   ],
@@ -13,7 +18,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js$|\.jsx$/,
         exclude: /node_modules/,
         use: [
           'babel-loader',
@@ -34,4 +39,8 @@ module.exports = {
       path.join(__dirname, 'node_modules'),
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({ template: '../www/index.html' }),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
