@@ -1,7 +1,9 @@
 import React from 'react';
+import '../../style/playerControl.css';
 
 const YrWkControl = (props) => {
 
+  const {queryData} = props;
   // const Weeks = () => {
   //   const wks = [];
   //   for (let i = 17; i > 0; i -= 1) {
@@ -19,15 +21,14 @@ const YrWkControl = (props) => {
   // }
 
   return (
-    <div>
-      Season:&nbsp;
-      <select onChange={(year) => props.setYear(year)}>
+    <div className='season-week-filter'>
+      {/* Season:&nbsp; */}
+      {/* <select onChange={(year) => props.setYear(year)}>
         <option key={`year-2017`} value='2017'>2017</option>
         <option key={`year-2016`} value='2016'>2016</option>
         <option key={`year-2015`} value='2015'>2015</option>
         <option key={`year-2014`} value='2014'>2014</option>
-      </select>
-      &nbsp;
+      </select> */}
       Week: &nbsp;
       <select onChange={(week) => props.setWeek(week)} >
         <option key={`week-1`} value='1'>1</option>

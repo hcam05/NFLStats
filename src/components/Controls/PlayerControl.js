@@ -1,20 +1,21 @@
 import React from 'react';
+import '../../style/playerControl.css';
 
 const PlayerControl = (props) => {
 
   return (
     <div className="position-filter">
       Filter Position:&nbsp;
-      <button onClick={() => props.filterTable('QB')}>QB</button>
-      <button onClick={() => props.filterTable('RB')}>RB</button>
-      <button onClick={() => props.filterTable('WR')}>WR</button>
-      <button onClick={() => props.filterTable('TE')}>TE</button>
-      <button onClick={() => props.filterTable('DEF')}>DEF</button>
-      <button onClick={() => props.filterTable('K')}>K</button>
-      <button onClick={() => props.filterTable('all')}>All Positions</button>
-      {/* <button onClick={() => props.filterTable('LB')}>LB</button>
-      <button onClick={() => props.filterTable('DB')}>DB</button>
-      <button onClick={() => props.filterTable('DL')}>DL</button> */}
+      <a className="position-filter-btn" onClick={() => props.filterTable('QB')}>QB</a>
+      <a className="position-filter-btn" onClick={() => props.filterTable('RB')}>RB</a>
+      <a className="position-filter-btn" onClick={() => props.filterTable('WR')}>WR</a>
+      <a className="position-filter-btn" onClick={() => props.filterTable('TE')}>TE</a>
+      <a className="position-filter-btn" onClick={() => props.filterTable('DEF')}>DEF</a>
+      <a className="position-filter-btn" onClick={() => props.filterTable('K')}>K</a>
+      <a className="position-filter-btn" onClick={() => props.filterTable('all')}>All</a>
+      {/* <a onClick={() => props.filterTable('LB')}>LB</a>
+      <a onClick={() => props.filterTable('DB')}>DB</a>
+      <a onClick={() => props.filterTable('DL')}>DL</a> */}
     </div>
   )
 
