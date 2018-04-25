@@ -3,7 +3,9 @@ import axios from 'axios';
 import PlayerStats from './PlayerStats';
 import PlayerControl from '../Controls/PlayerControl';
 import YrWkControl from '../Controls/YrWkControl';
-// import playerData from '../../model/playerData'
+import Header from '../Header';
+import PageControl from '../PageControl';
+
 import '../../style/style.css';
 
 class PlayerTable extends React.Component {
@@ -35,9 +37,11 @@ class PlayerTable extends React.Component {
   fetchNflData() {
     const allPlayers = []
     const nflApiUrlSeason = `http://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=${this.state.year}&week=${this.state.week}&format=json`;
+    console.log(nflApiUrlSeason);
     fetch(nflApiUrlSeason)
       .then((resp) => resp.json())
       .then((data) => {
+        console.log(data);
         data.players.forEach((x) => {
           if (x.position !== 'DB' && x.position !== 'DL' && x.position !== 'LB') {
             const plyr = {};
@@ -183,10 +187,12 @@ class PlayerTable extends React.Component {
   }
 
   setYear(year) {
-    this.setState({ year: year.target.value }, () => this.fetchNflData());
+    this.setState({ year: year.target.value });
+    // this.setState({ year: year.target.value }, () => this.fetchNflData());
   }
 
   setWeek(week) {
+    // this.setState({ week: week.target.value });
     this.setState({ week: week.target.value }, () => this.fetchNflData());
   }
 
@@ -195,24 +201,18 @@ class PlayerTable extends React.Component {
     if (this.state.players.length < 1) return <div>Loading</div>;
 
     return (
-      <div className="app">
-        <div className="app-header">Fantasy Football Dashboard</div>
-        <div className="season-week-filter">
-          <YrWkControl setYear={(year) => this.setYear(year)} setWeek={(week) => this.setWeek(week)} season={this.state.season} />
-        </div>
-        <div>
+      <div className='app'>
+        <div className='app-controls'>
+          <Header />
+          <YrWkControl setYear={(year) => this.setYear(year)} setWeek={(week) => this.setWeek(week)} season={this.state.season} queryData={() => this.fetchNflData()} />
           <PlayerControl filterTable={(pos) => this.filterTable(pos)} />
+          <PageControl next={() => this.nextPg()} prev={() => this.prevPg()} showAll={() => this.showAllPlayers()} />
         </div>
-        <br />
-        <div className="app-table">
-          <PlayerStats positions={this.state.positions} data={this.state.players} start={this.state.start} end={this.state.end} showPosition={this.state.showPosition} />
+        {/* <br /> */}
+        <div className='app-table'>
+        <PlayerStats positions={this.state.positions} data={this.state.players} start={this.state.start} end={this.state.end} showPosition={this.state.showPosition} />
         </div>
-        <br />
-        <div className="app-pagination">
-          <button onClick={() => this.prevPg()}>Prev</button>
-          <button onClick={() => this.nextPg()}>Next</button>
-          <button onClick={() => this.showAllPlayers()}>Show All</button>
-        </div>
+        {/* <br /> */}
       </div>
 
     );

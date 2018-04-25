@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../style/playerTable.css'
 
 class PlayerStats extends React.Component {
 
@@ -13,11 +14,11 @@ class PlayerStats extends React.Component {
   componentDidUpdate() {
     // this.filteredPositions();
   }
-  
+
   render() {
 
     // SORT PLAYERS BY TOTAL WEEK POINTS //
-    this.props.data.sort((x,y) => y.weekPts - x.weekPts);
+    this.props.data.sort((x, y) => y.weekPts - x.weekPts);
 
     const playerList = []
     if (this.props.data.length !== 0 && this.props.showPosition === 'all') {
@@ -51,24 +52,26 @@ class PlayerStats extends React.Component {
         }
       }
     }
-    
+
     return (
-      <table key='playertable'>
-        <thead>
-          <tr key='columnNames'>
-            <th key='name'>Name</th>
-            <th key='position'>Positon</th>
-            <th key='team'>Team</th>
-            <th key='season-points'>Season Points</th>
-            <th key='week-points'>Week Points</th>
-            {/* <th key='week'>Week</th>
+      <div className='playerstats-table'>
+        <table key='playertable'>
+          <thead>
+            <tr key='columnNames'>
+              <th key='name'>Name</th>
+              <th key='position'>Positon</th>
+              <th key='team'>Team</th>
+              <th key='season-points'>Season Points</th>
+              <th key='week-points'>Week Points</th>
+              {/* <th key='week'>Week</th>
             <th key='year'>Year</th> */}
-          </tr>
-        </thead>
-        <tbody>
-          {playerList}
-        </tbody>
-      </table>
+            </tr>
+          </thead>
+          <tbody>
+            {playerList}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
