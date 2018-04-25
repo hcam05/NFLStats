@@ -1,5 +1,6 @@
 .pg-control{
   display: flex;
+  justify-content: center;
 }
 
 .pg-control-btn{
@@ -14,5 +15,6 @@
 
 .pg-control-btn:hover{
   cursor: pointer;
-  background-color: blue;
+  background-color: darkgreen;
+  color: lightgrey
 }

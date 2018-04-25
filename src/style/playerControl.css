@@ -1,3 +1,9 @@
+.position-filter {
+  display: flex;
+  /* align-content: center; */
+  justify-content: center;
+}
+
 .position-filter-btn {
   font-size: 14px;
   padding-top: 2px;
@@ -5,5 +11,18 @@
   padding-right: 5px;
   background-color: lightgray;
   text-align: center;
+ }
+
+
+.position-filter-btn:hover{
+  cursor: pointer;
+  background-color: darkgreen;
+  color: lightgray;
+}
+
+
+ .season-week-filter {
+   display: flex;
+   justify-content: center;
  }
  
