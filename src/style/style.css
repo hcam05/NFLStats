@@ -1,85 +1,32 @@
-:root {
+body {
   font: 400 16px 'Roboto', sans-serif;
 }
 
-body {
-  background: #ABB7B7;
-  margin: 0, auto;
-}
+* {
+  margin: 0;
+  padding: 0;
+  }
 
 .app {
   width: 100%;
   display: flex;
+  background-color: grey;
+}
+
+.app-controls {
+  /* display: flex; */
+  text-align: center;
+  /* justify-content: center; */
+  width: 25vw;
+  /* position: fixed; */
+  background-color: grey;
+  /* height: 20vh; */
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  position: relative;
-}
-
-.app-table {
-  display: flex;
-  background: #EFEFEF;
-  border-radius: 4px 4px 0 0;
-}
-
-.app-header {
-  display: flex;
-  font-size: 20px;
-  text-align: center;
-  margin: 5px;
-}
-
-.season-week-filter {
-  display: flex;
-  margin: 5px;
-  text-align: center;
-}
-
-.position-filter {
-  display: flex;
-  margin: 5px;
-  text-align: center;
-}
-
-button {
-  font-size: 14px;
 }
 
 select {
   font-size: 14px;
 }
-
-/* Table Styling */
-
-table {  
-  color: #6C7A89;
-  width: 640px; 
-  border-collapse: collapse; 
-  border-spacing: 0; 
-}
-
-td, th {  
-  border: 1px solid transparent;
-  height: 30px; 
-  transition: all 0.3s;  /* Transitiion for hover effect */
-}
-
-th {  
-  background: #DADFE1;  
-  font-weight: bold;
-}
-
-td {  
-  background: #EFEFEF;
-  text-align: center;
-}
-
-/* Table Row Styling */
-tr:nth-child(even) td { background: #F1F1F1; }   
-tr:nth-child(odd) td { background: #FEFEFE; }  
-
-/* Hover Effect */
-tr td:hover { background: #666; color: #FFF; }  
 
 /* ----------- iPhone 4 and 4S ----------- */
 
@@ -187,7 +134,8 @@ tr td:hover { background: #666; color: #FFF; }
     
     .position-filter {
       display: none;
-      margin: 0px;
+      margin: 0px auto;
+      margin-top: 0;
     }
     
     .app-pagination{
@@ -201,23 +149,6 @@ tr td:hover { background: #666; color: #FFF; }
     select {
       font-size: 10px;
     }
-    
-    /* Table Styling */
-    
-    table {  
-      color: #6C7A89;
-      width: 100%; 
-      height: 100%;
-      border-collapse: collapse; 
-      border-spacing: 0; 
-    }
-    
-    td, th {  
-      border: 1px solid transparent;
-      height: 30px; 
-      transition: all 0.3s;  /* Transitiion for hover effect */
-    }
-    
 }
 
 /* Portrait */
