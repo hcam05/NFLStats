@@ -30,3 +30,8 @@ tr:nth-child(odd) td { background: #FEFEFE; }
 
 /* Hover Effect */
 tr td:hover { background: #666; color: #FFF; } 
+
+/* 
+.table-columnNames{
+  position: absolute;
+} */
